@@ -1,0 +1,41 @@
+name: Gerador de APK do THUZYN
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  android-build:
+    name: Criando o Aplicativo Real
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Pegando os códigos do Arthur
+      uses: actions/checkout@v3
+
+    - name: Configurando o Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '11'
+
+    - name: Configurando as ferramentas do Android
+      uses: android-actions/setup-android@v2
+
+    - name: Instalando o Transformador (Cordova)
+      run: npm install -g cordova
+
+    - name: Construindo o APK na Nuvem
+      run: |
+        cordova create projeto com.thuzyn123.aventurawarden "Aventura Warden Beta"
+        cp -r app/* projeto/www/
+        cp config.xml projeto/
+        cd projeto
+        cordova platform add android
+        cordova build android --no-telemetry
+
+    - name: Guardando o arquivo para o Arthur baixar
+      uses: actions/upload-artifact@v3
+      with:
+        name: Jogo-Do-Warden-APK
+        path: projeto/platforms/android/app/build/outputs/apk/debug/app-debug.apk 
