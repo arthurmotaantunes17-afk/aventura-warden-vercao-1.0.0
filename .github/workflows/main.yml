@@ -35,7 +35,7 @@ jobs:
         cordova build android --no-telemetry
 
     - name: Guardando o arquivo para o Arthur baixar
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@V4
       with:
         name: Jogo-Do-Warden-APK
         path: projeto/platforms/android/app/build/outputs/apk/debug/app-debug.apk 
