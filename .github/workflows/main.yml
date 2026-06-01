@@ -1,4 +1,5 @@
 name: Gerador de APK do THUZYN
+# Forçando o robo a rodar
 
 on:
   push:
@@ -11,16 +12,16 @@ jobs:
 
     steps:
     - name: Pegando os códigos do Arthur
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Configurando o Java
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
-        java-version: '11'
+        java-version: '17'
 
     - name: Configurando as ferramentas do Android
-      uses: android-actions/setup-android@v2
+      uses: android-actions/setup-android@v3
 
     - name: Instalando o Transformador (Cordova)
       run: npm install -g cordova
@@ -35,7 +36,7 @@ jobs:
         cordova build android --no-telemetry
 
     - name: Guardando o arquivo para o Arthur baixar
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@V4
       with:
         name: Jogo-Do-Warden-APK
         path: projeto/platforms/android/app/build/outputs/apk/debug/app-debug.apk 
