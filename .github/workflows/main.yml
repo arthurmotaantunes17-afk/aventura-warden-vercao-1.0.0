@@ -1,4 +1,5 @@
 name: Gerador de APK do THUZYN
+# Forçando o robo a rodar
 
 on:
   push:
