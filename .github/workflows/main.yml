@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Pegando os códigos do Arthur
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Configurando o Java
       uses: actions/setup-java@v4
