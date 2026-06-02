@@ -20,16 +20,14 @@ jobs:
         java-version: '17'
 
     - name: Configurando as ferramentas do Android
-      uses: android-actions/setup-android@v3
+      uses: android-actions/setup-android@v4
 
     - name: Instalando o Transformador (Cordova)
       run: npm install -g cordova
 
     - name: Construindo o APK na Nuvem
       run: |
-        cordova create projeto com.thuzyn123.aventurawarden "Aventura Warden Beta"
-        # Isso vai copiar TUDO o que estiver na raiz para dentro do projeto
-        # Menos a própria pasta do projeto para evitar erro
+      
         find . -maxdepth 1 -not -name 'projeto' -not -name '.' -exec cp -r {} projeto/www/ \;
         cd projeto
         cordova platform add android
