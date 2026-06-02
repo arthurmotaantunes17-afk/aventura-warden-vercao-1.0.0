@@ -14,10 +14,10 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Configurando o Java
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
-        java-version: '11'
+        java-version: '17'
 
     - name: Configurando as ferramentas do Android
       uses: android-actions/setup-android@v2
@@ -35,7 +35,8 @@ jobs:
         cordova build android --no-telemetry
 
     - name: Guardando o arquivo para o Arthur baixar
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
+    
       with:
         name: Jogo-Do-Warden-APK
         path: projeto/platforms/android/app/build/outputs/apk/debug/app-debug.apk 
