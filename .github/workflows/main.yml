@@ -9,7 +9,7 @@ jobs:
     name: Criando o Aplicativo Real
     runs-on: ubuntu-latest
 
-  steps:
+    steps:
     - name: Pegando os códigos do Arthur
       uses: actions/checkout@v4
 
@@ -20,7 +20,7 @@ jobs:
         java-version: '17'
 
     - name: Configurando as ferramentas do Android
-      uses: android-actions/setup-android@v2
+      uses: android-actions/setup-android@v3
 
     - name: Instalando o Transformador (Cordova)
       run: npm install -g cordova
@@ -39,3 +39,4 @@ jobs:
       with:
         name: Jogo-Do-Warden-APK
         path: projeto/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+    
