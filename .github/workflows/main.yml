@@ -28,14 +28,15 @@ jobs:
     - name: Construindo o APK na Nuvem
       run: |
         cordova create projeto com.thuzyn123.aventurawarden "Aventura Warden Beta"
-        cp -r app/* projeto/www/
-        cp config.xml projeto/
+        # Isso vai copiar TUDO o que estiver na raiz para dentro do projeto
+        # Menos a própria pasta do projeto para evitar erro
+        find . -maxdepth 1 -not -name 'projeto' -not -name '.' -exec cp -r {} projeto/www/ \;
         cd projeto
         cordova platform add android
         cordova build android --no-telemetry
 
     - name: Guardando o arquivo para o Arthur baixar
-      uses: actions/upload-artifact@V4
+      uses: actions/upload-artifact@v4
       with:
         name: Jogo-Do-Warden-APK
-        path: projeto/platforms/android/app/build/outputs/apk/debug/app-debug.apk 
+        path: projeto/platforms/android/app/build/outputs/apk/**/*.apk
